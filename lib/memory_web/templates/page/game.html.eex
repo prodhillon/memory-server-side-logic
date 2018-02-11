@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col">
+<h4>Memory Game: Welcome <%= @game %> !!</h4>
+<script>
+window.gameName = "<%= @game %>";
+</script>
+<div id="game">
+  Loading...
+</div>
+</div>
+</div>

@@ -1,8 +1,14 @@
-<h1>Memory Game</h1>
-
-<div id="game">
-  Loading...
+<body style="background-color:powderblue;">
+  <div class="row">
+    <div class="col">
+    <h1 id="index-page">***** Play Memory Game *****</h1>
+    <hr/>
+    <i><h2 id="index-page-sub">Start a new game or resume your previous game by just entering your name.</h2></i>
+    <br/>
+    <h4 id="index-page-sub">Enter name:</h4>
+    <br/>
+    <input id="playername" type="text">
+    <button id= "game-submit">Play</button>
+  </div>
 </div>
-
-
-
+</body>

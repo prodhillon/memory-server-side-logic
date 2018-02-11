@@ -11,22 +11,43 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html";
+//import "phoenix_html"
+//import React from 'react';
+//import Appln from './Appln';
 
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+ import socket from "./socket"
 
-import run_demo from "./demo";
+import memorygame_init from "./MemoryGame";
 
-function init() {
-  let root = document.getElementById('game');
-  run_demo(root);
+function form_init() {
+  //let channel = socket.channel("games:demo", {});
+  $('#game-submit').click(() => {
+    let xx= $('#playername').val();
+    let channel = socket.channel("games:"+{xx}, {});
+    channel.join()
+           .receive("ok", resp => { console.log("Joined successfully", resp) })
+           .receive("error", resp => { console.log("Unable to join", resp) });
+           window.location.href = "/game/" +xx;
+  });
 }
 
-// Use jQuery to delay until page loaded.
-$(init);
+  function start() {
+    let root = document.getElementById('game');
+    if (root) {
+      let channel = socket.channel("games:"+window.gameName, {});
+      memorygame_init(root,channel);
+    }
 
+  if (document.getElementById('index-page')) {
+    //let nn=document.getElementById('index-page').value;
+    //console.log("name is"+nn);
+    form_init();
+  }
+}
+
+$(start);
